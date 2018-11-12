@@ -6,7 +6,7 @@ class CreateJobs < ActiveRecord::Migration[5.2]
       t.string :price
       t.string :deadline
       t.string :contract_type
-      t.string :completed
+      t.string :completed, default: 'false'
       t.integer :stars
       t.references :developer
       t.references :buyer
