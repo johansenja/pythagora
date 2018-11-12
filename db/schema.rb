@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2018_11_12_160859) do
     t.string "price"
     t.string "deadline"
     t.string "contract_type"
-    t.string "completed"
+    t.string "completed", default: "false"
     t.integer "stars"
     t.bigint "developer_id"
     t.bigint "buyer_id"
