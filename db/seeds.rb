@@ -13,7 +13,7 @@ User.destroy_all
 
 u = User.new(first_name: 'Joe', last_name: 'Schmoe', email: 'joe.schmoe@igfewca.com', password: 'password')
 puts (u.save ? "user saved" : "invalid user")
-d = User.new(first_name: 'Dev', last_name: 'E Lopez', email: 'dev@elop.ment', password: 'password1', developer: 'true')
+d = User.new(first_name: 'Dev', last_name: 'E Lopez', tagline: 'senior rails developer', email: 'dev@elop.ment', password: 'password1', developer: true)
 puts (d.save ? "developer saved" : "invalid developer")
 
 j = Job.new(name: 'web design', description: 'design a web site')
