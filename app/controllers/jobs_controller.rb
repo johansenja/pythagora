@@ -38,6 +38,12 @@ class JobsController < ApplicationController
   def destroy
   end
 
+  def buyer_jobs
+  end
+
+  def developer_jobs
+  end
+
   private
 
   def find_job
