@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2018_11_12_174445) do
   create_table "bids", force: :cascade do |t|
     t.bigint "job_id"
     t.bigint "developer_id"
-    t.string "successful"
+    t.boolean "successful"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["developer_id"], name: "index_bids_on_developer_id"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2018_11_12_174445) do
     t.string "price"
     t.string "deadline"
     t.string "contract_type"
-    t.string "completed", default: "false"
+    t.boolean "completed", default: false
     t.integer "stars"
     t.bigint "developer_id"
     t.bigint "buyer_id"
@@ -55,8 +55,9 @@ ActiveRecord::Schema.define(version: 2018_11_12_174445) do
     t.datetime "remember_created_at"
     t.string "first_name"
     t.string "last_name"
+    t.string "tagline"
     t.text "bio"
-    t.string "developer"
+    t.boolean "developer"
     t.string "portfolio_links"
     t.string "photo"
     t.datetime "created_at", null: false
