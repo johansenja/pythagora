@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
   before_action :find_job, only: %i[show update destroy]
-  skip_before_action :authenticate_user!, only: :index
+  skip_before_action :authenticate_user!, only: [:index, :new]
 
   def index
     @jobs = Job.all
