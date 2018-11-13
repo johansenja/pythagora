@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_12_160859) do
+ActiveRecord::Schema.define(version: 2018_11_12_174445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bids", force: :cascade do |t|
+    t.bigint "job_id"
+    t.bigint "developer_id"
+    t.string "successful"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["developer_id"], name: "index_bids_on_developer_id"
+    t.index ["job_id"], name: "index_bids_on_job_id"
+  end
 
   create_table "jobs", force: :cascade do |t|
     t.string "name"
@@ -65,6 +75,8 @@ ActiveRecord::Schema.define(version: 2018_11_12_160859) do
     t.index ["skill_id"], name: "index_userskills_on_skill_id"
   end
 
+  add_foreign_key "bids", "jobs"
+  add_foreign_key "bids", "users", column: "developer_id"
   add_foreign_key "jobs", "users", column: "buyer_id"
   add_foreign_key "jobs", "users", column: "developer_id"
   add_foreign_key "userskills", "skills"

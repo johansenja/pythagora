@@ -1,0 +1,35 @@
+<h2>Tell us about your project</h2>
+<%= simple_form_for @job do |f| %>
+<%= f.input :name, label: "Type of Work" %>
+<%= f.input :deadline, label: "Timeline" %>
+<%= f.input :contract_type, label: "Contract type" %>
+<%= f.input :price, label: "Budget Range", collection: %w(£250 £500 £1000 £2000 £5000) %>
+<%= f.input :description, placeholder: "Describe your project in more detail" %>
+<% end %>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="review-my-post">
+  Review my Post
+</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><div id="modal-type-of-work"></div></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="modal-timeline"></div>
+        <div id="modal-contract"></div>
+        <div id="modal-budget"></div>
+        <div id="modal-description"></div>
+        <ul id="modal-errors"></ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Edit Listing</button>
+        <button type="button" class="btn btn-primary" id="submit-job-post">Post Job</button>
+      </div>
+    </div>
+  </div>
+</div>

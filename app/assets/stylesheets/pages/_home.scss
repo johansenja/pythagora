@@ -1,1 +1,39 @@
 // Specific CSS for your home-page
+
+body {
+  background-color: white;
+}
+
+.banner {
+  h1 {
+    color: black;
+  }
+  p {
+    color: black;
+  }
+}
+
+.primary-color {
+  background-color: $main-orange;
+  border: none;
+  &:hover {
+    background-color: $main-orange;
+    border: none;
+  &:active {
+    background-color: $main-orange;
+    }
+  }
+}
+
+.secondary-color {
+  background-color: $main-blue;
+  border: none;
+  &:hover {
+    background-color: $main-blue;
+    border: none;
+  &:active {
+    background-color: $main-blue;
+    }
+  }
+}
+
