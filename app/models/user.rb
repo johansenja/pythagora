@@ -4,6 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :jobs
+  has_many :bids
+  has_many :userskills
+  has_many :skills, through: :userskills
   validates :first_name, presence: true
   validates :last_name, presence: true
   # one or more of anything except @; then @; then one or more of anything but @ or .;
