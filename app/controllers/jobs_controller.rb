@@ -39,6 +39,7 @@ class JobsController < ApplicationController
   end
 
   def buyer_jobs
+    @jobs = Job.all
   end
 
   def developer_jobs
