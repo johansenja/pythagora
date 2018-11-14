@@ -1,0 +1,19 @@
+<h1>Invite <%= @developer.first_name %> to work on one of your projects:</h1>
+
+<% if @buyer.jobs.count > 1 %>
+  <ul>
+    <% @buyer.jobs.each do |job| %>
+      <%= link_to user_bids_create_path do %>
+        <li><%= job.name %></li>
+      <% end %>
+    <% end %>
+  </ul>
+  <% elsif @buyer.jobs %>
+    <%= link_to "Invite to #{@buyer.jobs.name}", user_bids_create_path %>
+  <% else %>
+  <h3>You do not have any current jobs available!</h3>
+  <%= link_to "Why not create one?",new_job_path %>
+  <% end %>
+
+  <%= link_to "Cancel", user_path(@developer) %>
+

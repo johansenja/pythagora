@@ -12,7 +12,7 @@
       <div class="dropdown">
         <img src=<%= image_path('avatar.png') %> class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
         <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-          <li><a href="#">Profile</a></li>
+          <li><%= link_to "Profile", user_path(current_user) %></li>
           <li><%= link_to "Buyer Dashboard", user_buyer_dashboard_path(current_user) %></li>
           <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
         </ul>

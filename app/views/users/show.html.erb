@@ -3,6 +3,9 @@
     <div class="profile-banner-container">
       <%= cl_image_tag @user.photo, height: 200, width: 200, crop: :fill, class: "avatar-xl" %>
       <div class="profile-banner-info text-left">
+        <% if @user == current_user %>
+            <%= render 'shared/editmyprofile' %>
+        <% end %>
         <h3><%= "#{@user.first_name} #{@user.last_name}" %></h3>
         <% if @user.developer == true && @user.tagline%>
              <p><% @user.tagline %></p>
@@ -24,14 +27,16 @@
       <table class="jobs-pricing text-center">
         <tr class="bold">
           <td><strong>~£55</strong></td>
-          <td><strong>@user.jobs.length</strong></td>
+          <td><strong><%= @user.jobs.length %></strong></td>
         </tr>
         <tr>
           <td>Hourly Rate</td>
           <td>Jobs</td>
         </tr>
       </table>
-    <%= link_to "Invite to my Job", root_path, class: "btn btn-lg btn-orange" %>
+      <% unless @user == current_user %>
+        <%= link_to "Invite to my Job", root_path, class: "btn btn-lg btn-orange" %>
+      <% end %>
     </div>
   </div>
 
