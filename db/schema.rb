@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_12_174445) do
+ActiveRecord::Schema.define(version: 2018_11_14_105619) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,9 +18,11 @@ ActiveRecord::Schema.define(version: 2018_11_12_174445) do
   create_table "bids", force: :cascade do |t|
     t.bigint "job_id"
     t.bigint "developer_id"
-    t.boolean "successful"
+    t.string "successful"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "buyer_id"
+    t.index ["buyer_id"], name: "index_bids_on_buyer_id"
     t.index ["developer_id"], name: "index_bids_on_developer_id"
     t.index ["job_id"], name: "index_bids_on_job_id"
   end
@@ -31,7 +33,7 @@ ActiveRecord::Schema.define(version: 2018_11_12_174445) do
     t.string "price"
     t.string "deadline"
     t.string "contract_type"
-    t.boolean "completed", default: false
+    t.string "completed", default: "false"
     t.integer "stars"
     t.bigint "developer_id"
     t.bigint "buyer_id"
@@ -55,9 +57,8 @@ ActiveRecord::Schema.define(version: 2018_11_12_174445) do
     t.datetime "remember_created_at"
     t.string "first_name"
     t.string "last_name"
-    t.string "tagline"
     t.text "bio"
-    t.boolean "developer"
+    t.string "developer"
     t.string "portfolio_links"
     t.string "photo"
     t.datetime "created_at", null: false
@@ -77,6 +78,7 @@ ActiveRecord::Schema.define(version: 2018_11_12_174445) do
   end
 
   add_foreign_key "bids", "jobs"
+  add_foreign_key "bids", "users", column: "buyer_id"
   add_foreign_key "bids", "users", column: "developer_id"
   add_foreign_key "jobs", "users", column: "buyer_id"
   add_foreign_key "jobs", "users", column: "developer_id"
