@@ -1,5 +1,5 @@
 <h1>Bid on <%= @buyer.first_name %>'s project:</h1>
 
-<%= link_to "Confirm bid", job_bids_create_path %>
+<%= link_to "Confirm bid", job_bids_create_path, method:'post' %>
 <%= link_to "Back", job_path(@job) %>
 
