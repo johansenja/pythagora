@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   mount_uploader :photo, PhotoUploader
-  has_many :jobs
   has_many :bids
+  has_many :jobs, foreign_key: :developer_id
   has_many :userskills, foreign_key: :developer_id
   has_many :skills, through: :userskills
   validates :first_name, presence: true

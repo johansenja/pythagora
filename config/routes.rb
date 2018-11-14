@@ -3,15 +3,15 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   resources :jobs do
     # in order for a developer to bid on a specific job
-    get 'bids/new', to: 'bids#new'
-    get 'bids/create', to: 'bids#new'
+    get 'bids/new', to: 'bids#new_job'
+    post 'bids/create', to: 'bids#create'
   end
   resources :users, only: [:index, :show] do
     get '/buyer_dashboard', to: 'jobs#buyer_jobs'
     get '/developer_dashboard', to: 'jobs#developer_jobs'
     # In order for a buyer to add a bid for a certain developer
-    get 'bids/new', to: 'bids#new'
-    get 'bids/create', to: 'bids#create'
+    get 'bids/new', to: 'bids#new_developer'
+    post 'bids/create', to: 'bids#create'
   end
   # all other bid routes, all relating to the current_user's bids
   resources :bids, only: [:index, :show, :edit, :update, :destroy]
