@@ -1,7 +1,6 @@
 <div class="grey-wrapper">
   <div class="container white-card">
     <h1><%= @job.name %></h1>
-    <p>Find me in app/views/jobs/show.html.erb</p>
     <p>Price: <%= @job.price %></p>
     <p>Deadline: <%= @job.deadline %></p>
     <p>Contract <%= @job.contract_type %></p>
@@ -10,5 +9,13 @@
   </div>
 
   <div class="container white-card">
+    <h2>Bids on your project</h2>
+      <% @job.bids.each do |bid| %>
+        <div class="bid-borders">
+          <h3><%= bid.developer.first_name %> <%= bid.developer.last_name %></h3>
+          <p>bid.developer.email</p>
+          <%= link_to "Accept Bid", root_path, class:"btn btn-primary" %>
+        </div>
+      <% end %>
   </div>
 </div>
