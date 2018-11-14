@@ -1,2 +1,14 @@
-<h1>Jobs#show</h1>
-<p>Find me in app/views/jobs/show.html.erb</p>
+<div class="grey-wrapper">
+  <div class="container white-card">
+    <h1><%= @job.name %></h1>
+    <p>Find me in app/views/jobs/show.html.erb</p>
+    <p>Price: <%= @job.price %></p>
+    <p>Deadline: <%= @job.deadline %></p>
+    <p>Contract <%= @job.contract_type %></p>
+    <%= link_to "Edit", edit_job_path(@job), class:"btn btn-secondary" %>
+    <%= link_to "Delete", root_path, class:"btn btn-secondary" %>
+  </div>
+
+  <div class="container white-card">
+  </div>
+</div>
