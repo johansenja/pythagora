@@ -34,8 +34,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
 
       t.string :first_name
       t.string :last_name
+      t.string :tagline
       t.text :bio
-      t.string :developer
+      t.boolean :developer
       t.string :portfolio_links
       t.string :photo
 

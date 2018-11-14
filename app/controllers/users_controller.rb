@@ -7,4 +7,7 @@ class UsersController < ApplicationController
     link_string = @user.portfolio_links
     @portfolio_links = link_string.split(',') if link_string
   end
+
+  def show
+  end
 end

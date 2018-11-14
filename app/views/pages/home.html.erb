@@ -3,12 +3,10 @@
     <div>
       <h1>Get the right developer for your job. Find your fit.</h1>
       <p>Post a job to get developers on</p>
-      <a class="btn btn-primary btn-lg primary-color">Get Started</a>
-      <a class="btn btn-primary btn-lg secondary-color">I'm a developer</a>
+      <%= link_to "Lets get working", new_job_path, class:'btn btn-primary btn-lg primary-color' %>
+      <%= link_to "I'm a developer", jobs_path, class:'btn btn-primary btn-lg secondary-color' %>
     </div>
     <%= image_tag "landing-background.png" %>
   </div>
 </div>
-
-
 

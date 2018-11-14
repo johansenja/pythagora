@@ -3,7 +3,7 @@ class CreateBids < ActiveRecord::Migration[5.2]
     create_table :bids do |t|
       t.references :job, foreign_key: true
       t.references :developer
-      t.string :successful
+      t.boolean :successful
 
       t.timestamps
     end
