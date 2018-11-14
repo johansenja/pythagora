@@ -1,5 +1,6 @@
 class BidsController < ApplicationController
   before_action :find_bid, only: [:show, :destroy]
+  before_action :find_job, only: [:new_job, :create]
   def index
     @bids = Bid.where(buyer_id: current_user.id)
   end
@@ -18,16 +19,17 @@ class BidsController < ApplicationController
     @developer = current_user
     @buyer = @job.buyer
     @bid = Bid.new
+    @bid.developer_id = @developer.id
+    @bid.buyer_id = @buyer.id
+    @bid.job_id = @job.id
   end
 
   def create
-    @bid = Bid.new
-    @bid.developer = @developer
-    @bid.buyer = @buyer
-    if @job.save
-      redirect_to bid_path(@bid)
+    @bid = Bid.new(bid_params)
+    if @bid.save
+      redirect_to job_path(@job)
     else
-      render :new
+      render :new_job
     end
   end
 
@@ -37,7 +39,15 @@ class BidsController < ApplicationController
 
   private
 
+  def bid_params
+    params.require(:bid).permit(:developer_id, :buyer_id, :job_id)
+  end
+
   def find_bid
     @bid = Bid.find(params[:id])
+  end
+
+  def find_job
+    @job = Job.find(params[:job_id])
   end
 end

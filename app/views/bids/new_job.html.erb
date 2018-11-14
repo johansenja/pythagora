@@ -1,5 +1,11 @@
 <h1>Bid on <%= @buyer.first_name %>'s project:</h1>
 
-<%= link_to "Confirm bid", job_bids_create_path %>
+<%= simple_form_for(@bid, url: job_bids_create_path) do |f| %>
+  <%= f.input :developer_id, as: :hidden %>
+  <%= f.input :buyer_id, as: :hidden %>
+  <%= f.input :job_id, as: :hidden %>
+  <%= f.submit %>
+<% end %>
+
 <%= link_to "Back", job_path(@job) %>
 
