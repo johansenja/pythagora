@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="profile-banner">
+    <div class="profile-banner-container">
+      <%= cl_image_tag @user.photo, height: 200, width: 200, crop: :fill, class: "avatar-xl" %>
+      <div class="profile-banner-info text-left">
+        <h3><%= "#{@user.first_name} #{@user.last_name}" %></h3>
+        <% if @user.developer == true && @user.tagline%>
+             <p><% @user.tagline %></p>
+        <% end %>
+        <p><%= @user.bio %></p>
+      </div>
+    </div>
+    <% if @user.developer == 'true' %>
+      <ul>
+        <% @user.skills.each do |skill| %>
+          <li class="text-center"><%= skill.name %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+  <div class="profile-banner">
+    <div class="profile-banner-container">
+      <table class="jobs-pricing text-center">
+        <tr class="bold">
+          <td><strong>~£55</strong></td>
+          <td><strong>@user.jobs.length</strong></td>
+        </tr>
+        <tr>
+          <td>Hourly Rate</td>
+          <td>Jobs</td>
+        </tr>
+      </table>
+    <%= link_to "Invite to my Job", root_path, class: "btn btn-lg btn-orange" %>
+    </div>
+  </div>
+
+  <% if @portfolio_links %>
+      <div class="profile-banner">
+        <h3>Portfolio Links</h3>
+          <% @portfolio_links.each do |link| %>
+            <p><%= link %></p>
+          <% end %>
+      </div>
+  <% end %>
+</div>

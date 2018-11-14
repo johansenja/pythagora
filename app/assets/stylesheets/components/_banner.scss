@@ -24,3 +24,42 @@
 .banner-content {
   display: flex;
 }
+
+.profile-banner {
+  // display: flex;
+  // align-items: center;
+  // flex-direction: column;
+  width: inherit;
+  padding: 10px 50px;
+  background-color: $light-gray;
+  color: black;
+  margin-bottom: 50px;
+
+  .avatar-xl {
+    margin-top: 40px;
+  }
+
+  .profile-banner-container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .profile-banner-info {
+    margin-left: 50px;
+  }
+
+  ul {
+    margin-top: 16px;
+  }
+
+  li {
+    background-color: $gray;
+    color: white;
+    padding: 5px 10px;
+    display: inline-block;
+    width: 100px;
+  }
+}

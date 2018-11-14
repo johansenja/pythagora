@@ -4,9 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  mount_uploader :photo, PhotoUploader
   has_many :jobs
   has_many :bids
-  has_many :userskills
+  has_many :userskills, foreign_key: :developer_id
   has_many :skills, through: :userskills
   validates :first_name, presence: true
   validates :last_name, presence: true
