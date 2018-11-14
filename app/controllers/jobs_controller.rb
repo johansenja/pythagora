@@ -17,7 +17,7 @@ class JobsController < ApplicationController
     @job = Job.new(job_params)
     @job.buyer = current_user
     if @job.save
-      redirect_to jobs_path
+      redirect_to job_path(@job)
     else
       render :new
     end
