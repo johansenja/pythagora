@@ -6,21 +6,28 @@
 
     <% @jobs.each do |job| %>
       <%= link_to job_path(job) do %>
-        <div class="container job-card">
+        <div class="job-card">
           <div class="card">
             <h3><%= job.name %></h3>
             <p><%= job.description %></p>
             <p>Contract <%= job.contract_type %></p>
+          </div>
+          <% if job.developer_id == true  %>
+          <div class="developer">
             <img src='https://kitt.lewagon.com/placeholder/users/fanninggg' class="card-user"/>
-            <div class="developer">
-              <p>Your developer</p>
-              <p><strong>Ben Fanning</strong></p>
-            </div>
+            <p>Your developer</p>
+            <p><strong> <%= job.developer.first_name %></strong></p>
+          <% else %>
+            <p> Waiting for bids!</p>
+          <% end %>
           </div>
         </div>
       <% end %>
     <% end %>
   </div>
 </div>
+
+
+
 
 
