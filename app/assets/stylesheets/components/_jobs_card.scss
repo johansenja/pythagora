@@ -1,0 +1,29 @@
+.job-card{
+  height: 175px;
+  background-position: center;
+  color: white;
+  position: relative;
+  background: white;
+  padding: 10px 30px 20px 30px;
+  margin: 10px;
+  box-shadow: 2px 4px 10px rgba(0,0,0,0.1);
+  margin: 10px auto;
+}
+
+.job-card h1, h2, h3, p {
+  color: black;
+}
+
+.card-user {
+  position: absolute;
+  right: 50px;
+  top: 50px;
+  width: 40px;
+  border-radius: 50%;
+}
+
+.developer{
+  position: absolute;
+  right: 10px;
+  top: 90px;
+}

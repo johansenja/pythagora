@@ -1,0 +1,26 @@
+<div class="grey-wrapper">
+  <div class="container">
+  <h1>Your Jobs</h1>
+   <%= link_to "Create a Job", new_job_path, class:"btn btn-primary pull-right" %>
+  </div>
+
+    <% @jobs.each do |job| %>
+      <%= link_to job_path(job) do %>
+        <div class="container job-card">
+          <div class="card">
+            <h3><%= job.name %></h3>
+            <p><%= job.description %></p>
+            <p>Contract <%= job.contract_type %></p>
+            <img src='https://kitt.lewagon.com/placeholder/users/fanninggg' class="card-user"/>
+            <div class="developer">
+              <p>Your developer</p>
+              <p><strong>Ben Fanning</strong></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+
