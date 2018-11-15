@@ -4,8 +4,13 @@
     <p>Price: <%= @job.price %></p>
     <p>Deadline: <%= @job.deadline %></p>
     <p>Contract <%= @job.contract_type %></p>
-    <%= link_to "Edit", edit_job_path(@job), class:"btn btn-secondary" %>
-    <%= link_to "Delete", root_path, class:"btn btn-secondary" %>
+    <% if @job.buyer == current_user%>
+      <%= link_to "Edit", edit_job_path(@job), class:"btn btn-secondary" %>
+      <%= link_to "Delete", root_path, class:"btn btn-secondary" %>
+    <% end %>
+    <% if @job.buyer != current_user && current_user.developer == true %>
+      <%= link_to "Bid on the project", job_bids_new_path(@job), class:"btn btn-primary" %>
+    <% end %>
   </div>
 
   <% if @job.developer %>
@@ -35,7 +40,9 @@
           <% end %>
         <% else %>
           <p>No bids yet. Check back later!</p>
-          <%= link_to "Why not invite a developer to work on your project?", users_path %>
+          <% if @job.buyer == current_user%>
+            <%= link_to "Why not invite a developer to work on your project?", users_path %>
+          <% end %>
         <% end %>
     </div>
   <% end %>
