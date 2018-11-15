@@ -39,7 +39,10 @@ class JobsController < ApplicationController
   end
 
   def buyer_jobs
-    @jobs = Job.where(buyer_id: current_user.id)
+    @all_jobs = Job.where(buyer_id: current_user.id)
+    @open_jobs = Job.where(developer_id: nil, buyer_id: current_user.id, completed: false)
+    @closed_jobs = Job.where(completed: true, buyer_id: current_user.id)
+    @active_jobs = Job.where(buyer_id: current_user.id).select { |job| job.developer != nil }
   end
 
   def developer_jobs
