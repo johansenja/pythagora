@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     get 'bids/new', to: 'bids#new_developer'
     post 'bids/create', to: 'bids#create'
   end
+  post 'log_in', to: 'users#custom_sign_in'
   # all other bid routes, all relating to the current_user's bids
   resources :bids, only: [:index, :show, :edit, :update, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

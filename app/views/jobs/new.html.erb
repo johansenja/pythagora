@@ -20,26 +20,86 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><div id="modal-type-of-work" style="font-weight: bold;"></div></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <div id="timeline-label" style="font-weight: bold;"></div>
-        <div id="modal-timeline"></div>
-        <div id="contract-label" style="font-weight: bold;"></div>
-        <div id="modal-contract"></div>
-        <div id="budget-label" style="font-weight: bold;"></div>
-        <div id="modal-budget"></div>
-        <div id="description-label" style="font-weight: bold;"></div>
-        <div id="modal-description"></div>
-        <ul id="modal-errors"></ul>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Edit Listing</button>
-        <button type="button" class="btn btn-primary" id="submit-job-post">Post Job</button>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  const modalHeader = document.querySelector('.modal-header');
+  const modalFooter = document.querySelector('.modal-footer');
+  const modalBody = document.querySelector('.modal-body');
+
+  const typeOfWorkField = document.getElementById('job_name');
+  const timelineField = document.getElementById('job_deadline');
+  const contractField = document.getElementById('job_contract_type');
+  const budgetField = document.getElementById('job_price');
+  const descriptionField = document.getElementById('job_description');
+  <% flash[:name] = Job.last.name %>
+  <% flash[:timeline] = Job.last.deadline %>
+  <% flash[:contract] = Job.last.contract_type %>
+  <% flash[:budget] = Job.last.price %>
+  <% flash[:description] = Job.last.description %>
+
+  if ('<%= flash[:name] %>') {
+    typeOfWorkField.value = '<%= flash[:name] %>'
+  }
+
+  if ('<%= flash[:timeline] %>') {
+    timelineField.value = '<%= flash[:timeline] %>'
+  }
+
+  if ('<%= flash[:contract] %>') {
+    contractField.value = '<%= flash[:contract] %>'
+  }
+
+  if ('<%= flash[:budget] %>') {
+    budgetField.value = '<%= flash[:budget] %>'
+  }
+
+  if ('<%= flash[:description] %>') {
+    descriptionField.value = '<%= flash[:description] %>'
+  }
+
+  <% if user_signed_in? %>
+    modalHeader.insertAdjacentHTML('afterbegin', '<h5 class="modal-title" id="exampleModalLabel">\
+                              <div id="modal-type-of-work" style="font-weight: bold;"></div>\
+                            </h5>')
+  <% else %>
+  modalHeader.insertAdjacentHTML('afterbegin', '<h5 class="modal-title" id="exampleModalLabel"\
+                          style="font-weight: bold;">You must sign in to post a job</h5>')
+  <% end %>
+
+  <% if user_signed_in? %>
+    modalBody.innerHTML = '<div id="timeline-label" style="font-weight: bold;"></div>\
+          <div id="modal-timeline"></div>\
+          <div id="contract-label" style="font-weight: bold;"></div>\
+          <div id="modal-contract"></div>\
+          <div id="budget-label" style="font-weight: bold;"></div>\
+          <div id="modal-budget"></div>\
+          <div id="description-label" style="font-weight: bold;"></div>\
+          <div id="modal-description"></div>\
+          <ul id="modal-errors"></ul>'
+  <% else %>
+    modalBody.innerHTML = `<%= render "shared/loginform" %>`
+  <% end %>
+
+  <% if user_signed_in? %>
+    modalFooter.innerHTML = '<button type="button" class="btn btn-secondary"\
+                             data-dismiss="modal">Edit Listing</button>\
+                              <button type="button" class="btn btn-primary"\
+                               id="submit-job-post">Post Job</button>'
+  <% else %>
+    modalFooter.innerHTML = '<button type="button" class="btn btn-secondary"\
+                            data-dismiss="modal">Go Back</button>\
+                            <button type="button" class="btn btn-primary"\
+                             id="modal-sign-in-btn">Sign In</button>'
+  <% end %>
+</script>

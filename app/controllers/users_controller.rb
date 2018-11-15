@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :find_user, only: [:show, :update]
-
+  skip_before_action :authenticate_user!, only: [:custom_sign_in]
   def index
   end
 
@@ -11,6 +11,14 @@ class UsersController < ApplicationController
 
   def update
     @user.update(user_params)
+  end
+
+  def custom_sign_in
+    user = User.find_for_authentication(email: params[:user][:email])
+    user&.valid_password?(params[:user][:password]) ? user : nil
+    sign_in(user, scope: :user)
+    @job = Job.new
+    redirect_to new_job_path
   end
 
   private

@@ -1,5 +1,6 @@
 import "bootstrap";
-import { buttonClick, submitForm } from './job-review-modal';
+import { buttonClick, submitForm, logIn } from './job-review-modal';
 
 buttonClick();
 submitForm();
+logIn();
