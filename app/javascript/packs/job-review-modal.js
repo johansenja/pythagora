@@ -1,4 +1,5 @@
 const form = document.getElementById('new_job');
+const loginForm = document.querySelector('form.simple_form.user')
 const typeOfWorkField = document.getElementById('job_name');
 const timelineField = document.getElementById('job_deadline');
 const contractField = document.getElementById('job_contract_type');
@@ -21,35 +22,35 @@ const reviewButton = document.getElementById('review-my-post');
 const submitButton = document.getElementById('submit-job-post');
 
 const fillFields = () => {
-  if (typeOfWorkField.value) {
+  if (typeOfWorkField.value && submitButton) {
     modalTypeOfWork.innerHTML = typeOfWorkField.value;
-  } else {
+  } else if (submitButton) {
     modalErrors.innerHTML = '';
     modalErrors.insertAdjacentHTML("afterbegin", "<li>Type of Work is required</li>");
   }
 
-  if (descriptionField.value) {
-    modalErrors.innerHTML = '';
+  if (descriptionField.value && submitButton) {
     descriptionLabel.innerHTML = "Description:"
     modalDescription.innerHTML = descriptionField.value;
-  } else {
+  } else if (submitButton) {
+    modalErrors.innerHTML = '';
     modalErrors.insertAdjacentHTML("afterbegin", "<li>Job description is required</li>");
   }
 
-  if (timelineField.value) {
+  if (timelineField.value && submitButton) {
     timelineLabel.innerHTML = "Timeline:";
+    modalTimeline.innerHTML = timelineField.value;
   }
-  modalTimeline.innerHTML = timelineField.value;
 
-  if (budgetField.value) {
+  if (budgetField.value && submitButton) {
     budgetLabel.innerHTML = "Budget range:";
+    modalBudget.innerHTML = budgetField.value;
   }
-  modalBudget.innerHTML = budgetField.value;
 
-  if (contractField.value) {
+  if (contractField.value && submitButton) {
     contractLabel.innerHTML = "Contract type:";
+    modalContract.innerHTML = contractField.value;
   }
-  modalContract.innerHTML = contractField.value;
 };
 
 const buttonClick = () => {
@@ -59,9 +60,20 @@ const buttonClick = () => {
 };
 
 const submitForm = () => {
-  submitButton.addEventListener('click', (event) => {
-    form.submit();
-  });
+  if (submitButton) {
+    submitButton.addEventListener('click', (event) => {
+      form.submit();
+    });
+  }
 };
 
-export { buttonClick, submitForm };
+const logIn = () => {
+  const loginButton = document.getElementById('modal-sign-in-btn');
+  if (loginButton) {
+    loginButton.addEventListener('click', (event) => {
+      loginForm.submit();
+    });
+  }
+};
+
+export { buttonClick, submitForm, logIn };
