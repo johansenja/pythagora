@@ -16,12 +16,15 @@ puts (u.save ? "buyer saved" : "invalid buyer")
 d = User.new(first_name: 'Phelim', last_name: 'Dunleavy', tagline: 'senior rails developer', email: 'dev@elop.ment', password: 'password1', developer: true, photo: "vys0rdkzlzqtn7fbhrve")
 puts (d.save ? "developer saved" : "invalid developer")
 
-j = Job.new(name: 'web design', description: 'design a web site')
-j.buyer = u
-puts (j.save ? "job saved" : "invalid job")
+Job.create!(name: 'web design', description: 'design a web site', completed: true, buyer_id: u.id, developer_id: d)
+Job.create!(name: 'landing page', description: 'I need a amazing landing page', completed: false, buyer_id: u.id, developer_id: d)
+Job.create!(name: 'ruby on rails search ', description: 'I need a developer to build some advanced search features', buyer_id: u.id, developer_id: u)
+Job.create!(name: 'Wordpress Tweaks', description: 'I need someone to help me with my wordpress template', buyer_id: u.id)
 
-s = Skill.new(name: 'html')
-puts (s.save ? "skill saved" : "invalid skill")
+
+
+s = Skill.create!(name: 'html')
+
 
 us = Userskill.new
 us.skill = s
