@@ -40,22 +40,25 @@ class JobsController < ApplicationController
 
   def buyer_jobs
     @jobs = Job.where(buyer_id: current_user.id)
+
   end
 
   def developer_jobs
   end
 
   def assign_job
-    @bid = Bid.find(params[:id])
+    @bid = Bid.find(params[:bid][:id])
     @developer = @bid.developer
     @job.developer = @developer
     @job.save
     @bid.successful = true
     @bid.save
-    lost_bids = @job.bids.reject { |bid| bid == @bid }
-    lost_bids.each do |bid|
-      bid.successful = false
-      bid.save
+    if @job.bids.length > 1
+      lost_bids = @job.bids.reject { |bid| bid == @bid }
+      lost_bids.each do |bid|
+        bid.successful = false
+        bid.save
+      end
     end
     redirect_to job_path(@job)
   end
