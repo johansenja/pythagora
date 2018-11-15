@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
   before_action :find_job, only: %i[show update destroy assign_job]
-  skip_before_action :authenticate_user!, only: [:index, :new]
+  skip_before_action :authenticate_user!, only: [:index, :new, :custom_submit_path]
 
   def index
     @jobs = Job.all
@@ -53,7 +53,12 @@ class JobsController < ApplicationController
     @unsucc_bids = Bid.where(developer_id: current_user.id, successful: false)
   end
 
-  def developer_jobs
+  def custom_submit_path
+    flash[:name] = params[:job][:name]
+    flash[:timeline] = params[:job][:deadline]
+    flash[:budget] = params[:job][:price]
+    flash[:contract] = params[:job][:contract_type]
+    flash[:description] = params[:job][:description]
   end
 
   def assign_job

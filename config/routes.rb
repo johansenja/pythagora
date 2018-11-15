@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     # end
   end
   patch 'jobs/:id/assign_job', to: 'jobs#assign_job', as: :assign_job
+  post '/newjob', to: 'jobs#custom_submit_path'
 
   resources :users, only: [:index, :show] do
     get '/dashboard', to: 'jobs#dashboard'

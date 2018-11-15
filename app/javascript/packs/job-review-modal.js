@@ -19,6 +19,7 @@ const budgetLabel = document.getElementById('budget-label');
 const descriptionLabel = document.getElementById('description-label');
 
 const reviewButton = document.getElementById('review-my-post');
+const reviewButton2 = document.getElementById('signed-in-review-my-post');
 const submitButton = document.getElementById('submit-job-post');
 
 const fillFields = () => {
@@ -54,14 +55,21 @@ const fillFields = () => {
 };
 
 const buttonClick = () => {
-  reviewButton.addEventListener('click', (event) => {
-    fillFields();
-  });
+  if (reviewButton) {
+    reviewButton.addEventListener('click', (event) => {
+      fillFields();
+      form.submit();
+    });
+  } else if (reviewButton2) {
+    reviewButton2.addEventListener('click', (event) => {
+      fillFields();
+    });
+  }
 };
 
 const submitForm = () => {
   if (submitButton) {
-    submitButton.addEventListener('click', (event) => {
+      submitButton.addEventListener('click', (event) => {
       form.submit();
     });
   }
