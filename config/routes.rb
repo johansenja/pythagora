@@ -12,8 +12,7 @@ Rails.application.routes.draw do
   patch 'jobs/:id/assign_job', to: 'jobs#assign_job', as: :assign_job
 
   resources :users, only: [:index, :show] do
-    get '/buyer_dashboard', to: 'jobs#buyer_jobs'
-    get '/developer_dashboard', to: 'jobs#developer_jobs'
+    get '/dashboard', to: 'jobs#dashboard'
     # In order for a buyer to add a bid for a certain developer
     get 'bids/new', to: 'bids#new_developer'
     post 'bids/create', to: 'bids#create'

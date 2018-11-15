@@ -1,0 +1,26 @@
+#developer-tabs {
+  position: relative;
+  left: -30px;
+  width:100%;
+  margin-bottom: 50px;
+}
+
+.developer-super-tab {
+  width: 49.9%;
+}
+
+.dashboard-container {
+  border: 1px solid $gray;
+  min-height: calc(100vh - 90px);
+}
+
+.create-job-btn {
+  display: inline;
+}
+
+.flex-area {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+}

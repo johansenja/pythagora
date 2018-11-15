@@ -38,11 +38,19 @@ class JobsController < ApplicationController
   def destroy
   end
 
-  def buyer_jobs
+  def dashboard
+    # buyer side
     @all_jobs = Job.where(buyer_id: current_user.id)
     @open_jobs = Job.where(developer_id: nil, buyer_id: current_user.id, completed: false)
     @closed_jobs = Job.where(completed: true, buyer_id: current_user.id)
     @active_jobs = Job.where(buyer_id: current_user.id).select { |job| job.developer != nil }
+
+    # developer side
+    @dev_jobs = Job.where(developer_id: current_user.id)
+    @current_dev_jobs = Job.where(developer_id: current_user.id, completed: false)
+    @bids = Bid.where(developer_id: current_user.id)
+    @open_bids = Bid.where(developer_id: current_user.id, successful: nil)
+    @unsucc_bids = Bid.where(developer_id: current_user.id, successful: false)
   end
 
   def developer_jobs
