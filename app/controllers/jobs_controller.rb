@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-  before_action :find_job, only: %i[show update destroy]
+  before_action :find_job, only: %i[show update destroy assign_job]
   skip_before_action :authenticate_user!, only: [:index, :new]
 
   def index
@@ -43,6 +43,21 @@ class JobsController < ApplicationController
   end
 
   def developer_jobs
+  end
+
+  def assign_job
+    @bid = Bid.find(params[:id])
+    @developer = @bid.developer
+    @job.developer = @developer
+    @job.save
+    @bid.successful = true
+    @bid.save
+    lost_bids = @job.bids.reject { |bid| bid == @bid }
+    lost_bids.each do |bid|
+      bid.successful = false
+      bid.save
+    end
+    redirect_to job_path(@job)
   end
 
   private
