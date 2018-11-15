@@ -39,7 +39,7 @@ class JobsController < ApplicationController
   end
 
   def buyer_jobs
-    @jobs = Job.all
+    @jobs = Job.where(buyer_id: current_user.id)
   end
 
   def developer_jobs
