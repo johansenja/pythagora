@@ -5,7 +5,122 @@
   </div>
 
   <div class="container">
-    <% @jobs.each do |job| %>
+    <ul class="nav nav-pills nav-fill">
+      <li class="nav-item">
+        <a class="nav-link active" href="#all_jobs" data-toggle="tab">All</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#active_jobs" data-toggle="tab">Active</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#open_jobs" data-toggle="tab">Open</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#closed_jobs" data-toggle="tab">Closed</a>
+      </li>
+    </ul>
+</div>
+
+<div class="container">
+  <div class="tab-content clearfix">
+    <div class="tab-pane active" id="all_jobs">
+      <% @all_jobs.each do |job| %>
+      <%= link_to job_path(job) do %>
+        <div class="job-card">
+          <div>
+            <h3><%= job.name %></h3>
+            <p><%= job.description %></p>
+            <p>Contract <%= job.contract_type %></p>
+          </div>
+          <% if job.bids.any? {|bid| bid.successful }  %>
+            <div class="Your developer">
+              <%= job.developer.photo  %>
+              <p>Your developer</p>
+              <p><strong> <%= User.find(job.bids.select{ |bid| bid.successful}.first.developer_id).first_name %></strong></p>
+            </div>
+            <% elsif job.bids.count == 1 %>
+            <div>
+              <%= "There is #{job.bids.count} bid waiting for review" %>
+            </div>
+            <% elsif job.bids.count > 1 %>
+            <div>
+              <%= "There are #{job.bids.count} waiting for review" %>
+            </div>
+            <% else job.bids.count == 0 %>
+            <div>
+              <p> Waiting for bids!</p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+    </div>
+    <div class="tab-pane" id="active_jobs">
+      <% @active_jobs.each do |job| %>
+      <%= link_to job_path(job) do %>
+        <div class="job-card">
+          <div>
+            <h3><%= job.name %></h3>
+            <p><%= job.description %></p>
+            <p>Contract <%= job.contract_type %></p>
+          </div>
+          <% if job.bids.any? {|bid| bid.successful }  %>
+            <div class="Your developer">
+              <%= job.developer.photo  %>
+              <p>Your developer</p>
+              <p><strong> <%= User.find(job.bids.select{ |bid| bid.successful}.first.developer_id).first_name %></strong></p>
+            </div>
+            <% elsif job.bids.count == 1 %>
+            <div>
+              <%= "There is #{job.bids.count} bid waiting for review" %>
+            </div>
+            <% elsif job.bids.count > 1 %>
+            <div>
+              <%= "There are #{job.bids.count} waiting for review" %>
+            </div>
+            <% else job.bids.count == 0 %>
+            <div>
+              <p> Waiting for bids!</p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+    </div>
+    <div class="tab-pane" id="open_jobs">
+      <% @open_jobs.each do |job| %>
+      <%= link_to job_path(job) do %>
+        <div class="job-card">
+          <div>
+            <h3><%= job.name %></h3>
+            <p><%= job.description %></p>
+            <p>Contract <%= job.contract_type %></p>
+          </div>
+          <% if job.bids.any? {|bid| bid.successful }  %>
+            <div class="Your developer">
+              <%= job.developer.photo  %>
+              <p>Your developer</p>
+              <p><strong> <%= User.find(job.bids.select{ |bid| bid.successful}.first.developer_id).first_name %></strong></p>
+            </div>
+            <% elsif job.bids.count == 1 %>
+            <div>
+              <%= "There is #{job.bids.count} bid waiting for review" %>
+            </div>
+            <% elsif job.bids.count > 1 %>
+            <div>
+              <%= "There are #{job.bids.count} waiting for review" %>
+            </div>
+            <% else job.bids.count == 0 %>
+            <div>
+              <p> Waiting for bids!</p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+    </div>
+      <div class="tab-pane" id="closed_jobs">
+      <% @closed_jobs.each do |job| %>
       <%= link_to job_path(job) do %>
         <div class="job-card">
           <div>
@@ -35,6 +150,7 @@
         </div>
       <% end %>
     <% end %>
+    </div>
   </div>
 </div>
 
