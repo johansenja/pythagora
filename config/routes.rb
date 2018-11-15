@@ -5,7 +5,12 @@ Rails.application.routes.draw do
     # in order for a developer to bid on a specific job
     get 'bids/new', to: 'bids#new_job'
     post 'bids/create', to: 'bids#create'
+    # member do
+    #   get 'assign_job'
+    # end
   end
+  patch 'jobs/:id/assign_job', to: 'jobs#assign_job', as: :assign_job
+
   resources :users, only: [:index, :show] do
     get '/buyer_dashboard', to: 'jobs#buyer_jobs'
     get '/developer_dashboard', to: 'jobs#developer_jobs'

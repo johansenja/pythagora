@@ -1,4 +1,4 @@
-<div class="grey-wrapper">
+  <div class="grey-wrapper">
   <div class="container white-card">
     <h1><%= @job.name %></h1>
     <p>Price: <%= @job.price %></p>
@@ -8,20 +8,33 @@
     <%= link_to "Delete", root_path, class:"btn btn-secondary" %>
   </div>
 
-  <div class="container white-card">
-    <h2>Current Bids</h2>
+  <% if @job.developer %>
+    <div class="container white-card">
+      <h2>Your Developer:</h2>
+      <h3><%= @job.developer.first_name %> <%= @job.developer.last_name %></h3>
+      <p><%= @job.developer.tagline %></p>
+      <p><%= @job.developer.bio %></p>
+    </div>
+  <% else %>
+    <div class="container white-card">
+      <h2>Current Bids</h2>
 
-      <% if @job.bids.any? %>
-        <% @job.bids.each do |bid| %>
-          <div class="bid-borders">
-            <h3><%= bid.developer.first_name %> <%= bid.developer.last_name %></h3>
-            <p>bid.developer.email</p>
-            <%= link_to "Accept Bid", root_path, class:"btn btn-primary" %>
-          </div>
+        <% if @job.bids.any? %>
+          <% @job.bids.each do |bid| %>
+            <div class="bid-borders">
+              <h3><%= bid.developer.first_name %> <%= bid.developer.last_name %></h3>
+              <p>bid.developer.email</p>
+              <%= simple_form_for(bid, url: assign_job_path(@job)) do |f| %>
+              <%= f.input :developer_id, as: :hidden, value: bid.developer_id %>
+              <%= f.input :id, as: :hidden, value: bid.id %>
+              <%= f.submit "Accept Bid" %>
+              <% end %>
+            </div>
+          <% end %>
+        <% else %>
+          <p>No bids yet. Check back later!</p>
+          <%= link_to "Why not invite a developer to work on your project?", users_path %>
         <% end %>
-      <% else %>
-        <p>No bids yet. Check back later!</p>
-        <%= link_to "Why not invite a developer to work on your project?", users_path %>
-      <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>

@@ -1,5 +1,5 @@
 class Job < ApplicationRecord
-  has_one :developer, class_name: 'User'
+  belongs_to :developer, class_name: :User, foreign_key: :developer_id, optional: true
   belongs_to :buyer, class_name: 'User'
   has_many :bids
 
