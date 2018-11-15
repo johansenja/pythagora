@@ -46,7 +46,7 @@ class JobsController < ApplicationController
   end
 
   def assign_job
-    @bid = Bid.find(params[:id])
+    @bid = Bid.find(params[:bid][:id])
     @developer = @bid.developer
     @job.developer = @developer
     @job.save

@@ -1,19 +1,32 @@
-<h1>Invite <%= @developer.first_name %> to work on one of your projects:</h1>
+<div class="grey-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-lg-6 col-lg-offset-3">
+        <div class="white-card">
+          <h1>Invite <%= @developer.first_name %> to a project</h1>
+          <% if @buyer.jobs.count > 1 %>
+            <ul>
+              <% @buyer.jobs.each do |job| %>
+                <li>
+                  <%= link_to user_bids_create_path(bid: { job_id: job.id, developer_id: @developer.id, buyer_id: @buyer.id }), method: :post do %>
+                    <%= job.name %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          <% elsif @buyer.jobs %>
+            <p><strong><%= @buyer.jobs.first.name %></strong> is the only project you have right now </p>
+            <%= link_to "Invite to #{@buyer.jobs.first.name}", user_bids_create_path(bid: { job_id: @buyer.jobs.first.id, developer_id: @developer.id, buyer_id: @buyer.id }), method: :post, class:"btn btn-primary" %>
+          <% else %>
+            <h3>You do not have any current jobs available!</h3>
+            <%= link_to "Why not create one?",new_job_path, class:"btn btn-primary" %>
+          <% end %>
 
-<% if @buyer.jobs.count > 1 %>
-  <ul>
-    <% @buyer.jobs.each do |job| %>
-      <%= link_to user_bids_create_path do %>
-        <li><%= job.name %></li>
-      <% end %>
-    <% end %>
-  </ul>
-  <% elsif @buyer.jobs %>
-    <%= link_to "Invite to #{@buyer.jobs.name}", user_bids_create_path %>
-  <% else %>
-  <h3>You do not have any current jobs available!</h3>
-  <%= link_to "Why not create one?",new_job_path %>
-  <% end %>
+          <%= link_to "Cancel", users_path, class:'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <%= link_to "Cancel", user_path(@developer) %>
 
