@@ -15,7 +15,8 @@
           </div>
           <% if job.bids.any? {|bid| bid.successful }  %>
             <div class="Your developer">
-              <%= job.developer.photo  %>
+              <%=raise  %>
+              <%= job.developer.photo %>
               <p>Your developer</p>
               <p><strong> <%= User.find(job.bids.select{ |bid| bid.successful}.first.developer_id).first_name %></strong></p>
             </div>
