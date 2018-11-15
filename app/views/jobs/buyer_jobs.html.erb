@@ -1,26 +1,37 @@
 <div class="grey-wrapper">
   <div class="container">
-  <h1>Your Jobs</h1>
-   <%= link_to "Create a Job", new_job_path, class:"btn btn-primary pull-right" %>
+    <h1>Your Jobs</h1>
+     <%= link_to "Create a Job", new_job_path, class:"btn btn-primary pull-right" %>
   </div>
 
+  <div class="container">
     <% @jobs.each do |job| %>
       <%= link_to job_path(job) do %>
         <div class="job-card">
-          <div class="card">
+          <div>
             <h3><%= job.name %></h3>
             <p><%= job.description %></p>
             <p>Contract <%= job.contract_type %></p>
           </div>
-          <% if job.developer_id == 'true'  %>
-          <div class="developer">
-            <img src='https://kitt.lewagon.com/placeholder/users/fanninggg' class="card-user"/>
-            <p>Your developer</p>
-            <p><strong> <%= job.developer.first_name %></strong></p>
-          <% else %>
-            <p> Waiting for bids!</p>
+          <% if job.bids.any? {|bid| bid.successful }  %>
+            <div class="Your developer">
+              <%= job.developer.photo  %>
+              <p>Your developer</p>
+              <p><strong> <%= User.find(job.bids.select{ |bid| bid.successful}.first.developer_id).first_name %></strong></p>
+            </div>
+            <% elsif job.bids.count == 1 %>
+            <div>
+              <%= "There is #{job.bids.count} bid waiting for review" %>
+            </div>
+            <% elsif job.bids.count > 1 %>
+            <div>
+              <%= "There are #{job.bids.count} waiting for review" %>
+            </div>
+            <% else job.bids.count == 0 %>
+            <div>
+              <p> Waiting for bids!</p>
+            </div>
           <% end %>
-          </div>
         </div>
       <% end %>
     <% end %>
