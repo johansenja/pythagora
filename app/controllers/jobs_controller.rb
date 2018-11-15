@@ -49,13 +49,13 @@ class JobsController < ApplicationController
     @bid = Bid.find(params[:id])
     @developer = @bid.developer
     @job.developer = @developer
-    raise unless @job.save
+    @job.save
     @bid.successful = true
-    raise unless @bid.save
+    @bid.save
     lost_bids = @job.bids.reject { |bid| bid == @bid }
     lost_bids.each do |bid|
       bid.successful = false
-      raise unless bid.save
+      bid.save
     end
     redirect_to job_path(@job)
   end
