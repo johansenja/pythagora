@@ -7,7 +7,11 @@
 .white-card {
   background: white;
   padding: 10px 30px 20px 30px;
-  margin: 10px;
   box-shadow: 2px 4px 10px rgba(0,0,0,0.1);
-  margin: 10px auto;
+  margin: 10px 0;
+}
+
+.border-hover:hover, .border-hover:focus {
+  border: 1px solid $main-blue;
+  text-decoration: none !important;
 }

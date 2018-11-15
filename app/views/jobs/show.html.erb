@@ -1,27 +1,32 @@
-  <div class="grey-wrapper">
-  <div class="container white-card">
-    <h1><%= @job.name %></h1>
-    <p>Price: <%= @job.price %></p>
-    <p>Deadline: <%= @job.deadline %></p>
-    <p>Contract <%= @job.contract_type %></p>
-    <% if @job.buyer == current_user%>
-      <%= link_to "Edit", edit_job_path(@job), class:"btn btn-secondary" %>
-      <%= link_to "Delete", root_path, class:"btn btn-secondary" %>
-    <% end %>
-    <% if @job.buyer != current_user && current_user.developer == true %>
-      <%= link_to "Bid on the project", job_bids_new_path(@job), class:"btn btn-primary" %>
-    <% end %>
+<div class="grey-wrapper">
+  <div class="container">
+    <div class="white-card">
+      <h1><%= @job.name %></h1>
+      <p>Price: <%= @job.price %></p>
+      <p>Deadline: <%= @job.deadline %></p>
+      <p>Contract <%= @job.contract_type %></p>
+      <% if @job.buyer == current_user%>
+        <%= link_to "Edit", edit_job_path(@job), class:"btn btn-secondary" %>
+        <%= link_to "Delete", root_path, class:"btn btn-secondary" %>
+      <% end %>
+      <% if user_signed_in? && @job.buyer != current_user && current_user.developer == true %>
+        <%= link_to "Bid on the project", job_bids_new_path(@job), class:"btn btn-primary" %>
+      <% end %>
+    </div>
   </div>
 
   <% if @job.developer %>
-    <div class="container white-card">
-      <h2>Your Developer:</h2>
-      <h3><%= @job.developer.first_name %> <%= @job.developer.last_name %></h3>
-      <p><%= @job.developer.tagline %></p>
-      <p><%= @job.developer.bio %></p>
+    <div class="container">
+      <div class="white-card">
+        <h2>Your Developer:</h2>
+        <h3><%= @job.developer.first_name %> <%= @job.developer.last_name %></h3>
+        <p><%= @job.developer.tagline %></p>
+        <p><%= @job.developer.bio %></p>
+      </div>
     </div>
   <% else %>
-    <div class="container white-card">
+    <div class="container">
+      <div class="white-card">
       <h2>Current Bids</h2>
 
         <% if @job.bids.any? %>
@@ -44,6 +49,7 @@
             <%= link_to "Why not invite a developer to work on your project?", users_path %>
           <% end %>
         <% end %>
+      </div>
     </div>
   <% end %>
 </div>
