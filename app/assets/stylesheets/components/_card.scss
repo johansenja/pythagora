@@ -11,7 +11,12 @@
   margin: 10px 0;
 }
 
-.border-hover:hover, .border-hover:focus {
+.border-hover:hover {
   border: 1px solid $main-blue;
-  text-decoration: none !important;
+}
+
+.no-underline:hover {
+  a {
+    text-decoration: none !important;
+  }
 }

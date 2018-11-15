@@ -8,6 +8,7 @@
 
   <% @jobs.each do |job| %>
     <div class="container">
+      <div class="no-underline">
       <%= link_to job_path(job) do %>
         <div class="white-card border-hover">
           <h3><%= job.name %></h3>
@@ -18,8 +19,9 @@
           <% if user_signed_in? && job.buyer != current_user && current_user.developer == true %>
             <%= link_to "Bid on the project", job_bids_new_path(job), class:"btn btn-primary" %>
           <% end %>
-        </div>
+      </div>
       <% end %>
+        </div>
     </div>
   <% end %>
 </div>
