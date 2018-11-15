@@ -1,21 +1,27 @@
 <div class="grey-wrapper">
-  <div class="container white-card">
-    <h2>Find your next project</h2>
-    <p>Placeholder for search functionality</p>
+  <div class="container">
+    <div class="white-card">
+      <h2>Find your next project</h2>
+      <p>Placeholder for search functionality</p>
+    </div>
   </div>
 
   <% @jobs.each do |job| %>
-    <div class="container white-card">
+    <div class="container">
+      <div class="no-underline">
       <%= link_to job_path(job) do %>
+        <div class="white-card border-hover">
           <h3><%= job.name %></h3>
           <p><%= job.description %></p>
           <p>Price: <%= job.price %></p>
           <p>Deadline: <%= job.deadline %></p>
           <p>Contract <%= job.contract_type %></p>
-          <% if job.buyer != current_user && current_user.developer == true %>
+          <% if user_signed_in? && job.buyer != current_user && current_user.developer == true %>
             <%= link_to "Bid on the project", job_bids_new_path(job), class:"btn btn-primary" %>
           <% end %>
+      </div>
       <% end %>
+        </div>
     </div>
   <% end %>
 </div>
