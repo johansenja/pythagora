@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
   before_action :find_job, only: %i[show update destroy assign_job]
-  skip_before_action :authenticate_user!, only: [:index, :new]
+  skip_before_action :authenticate_user!, only: [:index, :new, :custom_submit_path]
 
   def index
     @jobs = Job.all
@@ -38,14 +38,27 @@ class JobsController < ApplicationController
   def destroy
   end
 
-  def buyer_jobs
+  def dashboard
+    # buyer side
     @all_jobs = Job.where(buyer_id: current_user.id)
     @open_jobs = Job.where(developer_id: nil, buyer_id: current_user.id, completed: false)
     @closed_jobs = Job.where(completed: true, buyer_id: current_user.id)
     @active_jobs = Job.where(buyer_id: current_user.id).select { |job| job.developer != nil }
+
+    # developer side
+    @dev_jobs = Job.where(developer_id: current_user.id)
+    @current_dev_jobs = Job.where(developer_id: current_user.id, completed: false)
+    @bids = Bid.where(developer_id: current_user.id)
+    @open_bids = Bid.where(developer_id: current_user.id, successful: nil)
+    @unsucc_bids = Bid.where(developer_id: current_user.id, successful: false)
   end
 
-  def developer_jobs
+  def custom_submit_path
+    flash[:name] = params[:job][:name]
+    flash[:timeline] = params[:job][:deadline]
+    flash[:budget] = params[:job][:price]
+    flash[:contract] = params[:job][:contract_type]
+    flash[:description] = params[:job][:description]
   end
 
   def assign_job

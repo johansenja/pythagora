@@ -2,16 +2,29 @@
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
       <h2>Tell us about your project</h2>
-          <%= simple_form_for @job do |f| %>
-          <%= f.input :name, label: "Type of Work" %>
-          <%= f.input :deadline, label: "Timeline" %>
-          <%= f.input :contract_type, label: "Contract type" %>
-          <%= f.input :price, label: "Budget Range", collection: %w(£250 £500 £1000 £2000 £5000) %>
-          <%= f.input :description, placeholder: "Describe your project in more detail", input_html: { rows: 5 }  %>
+        <% if current_user %>
+            <%= simple_form_for @job do |f| %>
+              <%= f.input :name, label: "Type of Work" %>
+              <%= f.input :deadline, label: "Timeline" %>
+              <%= f.input :contract_type, label: "Contract type" %>
+              <%= f.input :price, label: "Budget Range", collection: %w(£250 £500 £1000 £2000 £5000) %>
+              <%= f.input :description, placeholder: "Describe your project in more detail", input_html: { rows: 5 }  %>
+            <% end %>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="signed-in-review-my-post">
+            Review my Post
+            </button>
+        <% else %>
+            <%= simple_form_for @job, url: newjob_path(:name) do |f| %>
+              <%= f.input :name, label: "Type of Work" %>
+              <%= f.input :deadline, label: "Timeline" %>
+              <%= f.input :contract_type, label: "Contract type" %>
+              <%= f.input :price, label: "Budget Range", collection: %w(£250 £500 £1000 £2000 £5000) %>
+              <%= f.input :description, placeholder: "Describe your project in more detail", input_html: { rows: 5 }  %>
+            <% end %>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="review-my-post">
+              Review my Post
+            </button>
         <% end %>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="review-my-post">
-          Review my Post
-        </button>
       </div>
   </div>
 </div>
@@ -42,11 +55,6 @@
   const contractField = document.getElementById('job_contract_type');
   const budgetField = document.getElementById('job_price');
   const descriptionField = document.getElementById('job_description');
-  <% flash[:name] = Job.last.name %>
-  <% flash[:timeline] = Job.last.deadline %>
-  <% flash[:contract] = Job.last.contract_type %>
-  <% flash[:budget] = Job.last.price %>
-  <% flash[:description] = Job.last.description %>
 
   if ('<%= flash[:name] %>') {
     typeOfWorkField.value = '<%= flash[:name] %>'

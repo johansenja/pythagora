@@ -1,0 +1,16 @@
+<div class="grey-wrapper">
+  <div class="container dashboard-container">
+    <% if current_user.developer %>
+      <%= render 'shared/developer-dashboard-tabs' %>
+    <% else %>
+      <%= render 'shared/buyer-dashboard-tabs' %>
+    <% end %>
+
+
+    <% if current_user.developer %>
+      <%= render 'shared/developer-dashboard' %>
+    <% else %>
+      <%= render 'shared/buyer-dashboard' %>
+    <% end %>
+  </div>
+</div>
