@@ -35,6 +35,8 @@
             <div class="bid-borders">
               <h3><%= bid.developer.first_name %> <%= bid.developer.last_name %></h3>
               <p><%= bid.developer.email %></p>
+              <p><%= bid.developer.tagline %></p>
+              <p><%= bid.developer.bio %></p>
               <% if @job.buyer == current_user%>
                 <%= simple_form_for(bid, url: assign_job_path(@job)) do |f| %>
                 <%= f.input :developer_id, as: :hidden, value: bid.developer_id %>
