@@ -1,19 +1,17 @@
-<div class="container">
-  <div class="flex-area">
-    <ul class="nav nav-pills nav-fill">
-      <li class="nav-item active">
-        <a class="nav-link active" href="#all_jobs" data-toggle="tab">All</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#active_jobs" data-toggle="tab">Active</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#open_jobs" data-toggle="tab">Open</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#closed_jobs" data-toggle="tab">Closed</a>
-      </li>
-    </ul>
-    <%= link_to "Create a Job", new_job_path, class:"btn btn-primary create-job-btn" %>
-  </div>
+<div class="flex-area">
+  <ul class="nav nav-pills nav-fill sub-tabs">
+    <li class="nav-item active light-text">
+      <a class="nav-link active" href="#all_jobs" data-toggle="tab">My Job Posts</a>
+    </li>
+    <li class="nav-item light-text">
+      <a class="nav-link" href="#active_jobs" data-toggle="tab">Active Jobs</a>
+    </li>
+    <li class="nav-item light-text">
+      <a class="nav-link" href="#open_jobs" data-toggle="tab">Pending Jobs</a>
+    </li>
+    <li class="nav-item light-text">
+      <a class="nav-link" href="#closed_jobs" data-toggle="tab">Completed Jobs</a>
+    </li>
+  </ul>
+  <%= link_to "Create a Job", new_job_path, class:"btn create-job-btn" %>
 </div>

@@ -1,12 +1,19 @@
-#developer-tabs {
-  position: relative;
-  left: -30px;
-  width:100%;
-  margin-bottom: 50px;
-}
-
 .developer-super-tab {
   width: 49.9%;
+}
+
+#developer-tabs {
+  width: calc(100% + 30px);
+  margin-bottom: 50px;
+  position: relative;
+  left: -15px;
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+  li.active {
+    background-color: $main-blue !important;
+    a {
+      background-color:inherit;
+    }
+  }
 }
 
 .dashboard-container {
@@ -16,6 +23,9 @@
 
 .create-job-btn {
   display: inline;
+  background-color: $main-orange;
+  color: white;
+  font-weight: lighter;
 }
 
 .flex-area {
@@ -23,4 +33,28 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 50px;
+}
+
+.light-text {
+  font-weight: lighter;
+}
+
+.nav-link {
+  font-weight: lighter;
+}
+
+.sub-tabs {
+  li.active {
+    background-color: $main-blue !important;
+    a {
+      background-color:inherit;
+      &:hover {
+        background-color: inherit;
+      }
+
+      &:focus {
+        background-color: inherit;
+      }
+    }
+  }
 }

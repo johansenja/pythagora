@@ -1,0 +1,16 @@
+.job-page-sign-in-links {
+  flex-grow: 1;
+  text-align: center;
+  padding: 5px 0;
+  &:hover {
+
+  }
+}
+
+.sign-in-links-container {
+  display: flex;
+  padding-left: 0;
+  width: 500px;
+  justify-content: space-around;
+}
+
