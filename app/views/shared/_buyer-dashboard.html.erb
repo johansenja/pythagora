@@ -8,7 +8,7 @@
           <p><%= job.description %></p>
           <p>Contract <%= job.contract_type %></p>
         </div>
-        <% if job.bids.any? {|bid| bid.successful }  %>
+        <% if job.bids.first.successful %>
           <div class="Your developer">
             <% if current_user.photo.file %>
                   <%= cl_image_tag job.developer.photo, class: 'avatar-sm' %>
@@ -44,7 +44,7 @@
           <p><%= job.description %></p>
           <p>Contract <%= job.contract_type %></p>
         </div>
-        <% if job.bids.any? {|bid| bid.successful }  %>
+        <% if job.bids.first.successful %>
           <div class="Your developer">
             <% if current_user.photo.file %>
                   <%= cl_image_tag job.developer.photo, class: 'avatar-sm' %>
@@ -80,7 +80,7 @@
             <p><%= job.description %></p>
             <p>Contract <%= job.contract_type %></p>
           </div>
-          <% if job.bids.any? {|bid| bid.successful }  %>
+          <% if job.bids.first.successful %>
             <div class="Your developer">
               <% if current_user.photo.file %>
                   <%= cl_image_tag job.developer.photo, class: 'avatar-sm' %>
@@ -116,7 +116,7 @@
             <p><%= job.description %></p>
             <p>Contract <%= job.contract_type %></p>
           </div>
-          <% if job.bids.any? {|bid| bid.successful }  %>
+          <% if job.bids.first.successful %>
               <div class="Your developer">
                 <% if current_user.photo.file %>
                   <%= cl_image_tag job.developer.photo, class: 'avatar-sm' %>
