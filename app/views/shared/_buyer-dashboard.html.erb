@@ -10,7 +10,11 @@
         </div>
         <% if job.bids.any? {|bid| bid.successful }  %>
           <div class="Your developer">
-            <%= cl_image_tag job.developer.photo, class: 'avatar' %>
+            <% if current_user.photo.file %>
+                  <%= cl_image_tag job.developer.photo, class: 'avatar-sm' %>
+                <% else %>
+                  <%= image_tag 'avatar.png', class: 'avatar-sm' %>
+                <% end %>
             <p>Your developer</p>
             <p><strong> <%= User.find(job.bids.select{ |bid| bid.successful}.first.developer_id).first_name %></strong></p>
           </div>
@@ -42,7 +46,11 @@
         </div>
         <% if job.bids.any? {|bid| bid.successful }  %>
           <div class="Your developer">
-            <%= cl_image_tag job.developer.photo, class: 'avatar' %>
+            <% if current_user.photo.file %>
+                  <%= cl_image_tag job.developer.photo, class: 'avatar-sm' %>
+                <% else %>
+                  <%= image_tag 'avatar.png', class: 'avatar-sm' %>
+                <% end %>
             <p>Your developer</p>
             <p><strong> <%= User.find(job.bids.select{ |bid| bid.successful}.first.developer_id).first_name %></strong></p>
           </div>
@@ -74,7 +82,11 @@
           </div>
           <% if job.bids.any? {|bid| bid.successful }  %>
             <div class="Your developer">
-              <%= cl_image_tag job.developer.photo, class: 'avatar' %>
+              <% if current_user.photo.file %>
+                  <%= cl_image_tag job.developer.photo, class: 'avatar-sm' %>
+                <% else %>
+                  <%= image_tag 'avatar.png', class: 'avatar-sm' %>
+                <% end %>
               <p>Your developer</p>
               <p><strong> <%= User.find(job.bids.select{ |bid| bid.successful}.first.developer_id).first_name %></strong></p>
             </div>
@@ -106,7 +118,11 @@
           </div>
           <% if job.bids.any? {|bid| bid.successful }  %>
               <div class="Your developer">
-                <%= cl_image_tag job.developer.photo, class: 'avatar' %>
+                <% if current_user.photo.file %>
+                  <%= cl_image_tag job.developer.photo, class: 'avatar-sm' %>
+                <% else %>
+                  <%= image_tag 'avatar.png', class: 'avatar-sm' %>
+                <% end %>
                 <p>Your developer</p>
                 <p><strong> <%= User.find(job.bids.select{ |bid| bid.successful}.first.developer_id).first_name %></strong></p>
               </div>
