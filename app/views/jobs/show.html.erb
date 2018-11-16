@@ -7,7 +7,7 @@
       <p>Contract <%= @job.contract_type %></p>
       <% if @job.buyer == current_user%>
         <%= link_to "Edit", edit_job_path(@job), class:"btn btn-secondary" %>
-        <%= link_to "Delete", root_path, class:"btn btn-secondary" %>
+        <%= link_to "Delete", job_path(@job), method: :delete, class:"btn btn-secondary", data: {confirm: 'Are you sure?'} %>
       <% end %>
 
       <% if user_signed_in? && @job.buyer != current_user && current_user.developer == true %>

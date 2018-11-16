@@ -36,6 +36,8 @@ class JobsController < ApplicationController
   end
 
   def destroy
+    @job.destroy
+    redirect_to user_dashboard_path(current_user)
   end
 
   def dashboard
