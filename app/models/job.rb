@@ -1,7 +1,7 @@
 class Job < ApplicationRecord
   belongs_to :developer, class_name: :User, foreign_key: :developer_id, optional: true
   belongs_to :buyer, class_name: 'User'
-  has_many :bids
+  has_many :bids, dependent: :destroy
 
   validates :name, presence: true
   validates :description, presence: true

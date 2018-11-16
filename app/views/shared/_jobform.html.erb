@@ -1,0 +1,9 @@
+<%= simple_form_for job, url: url do |f| %>
+  <%= f.input :name, label: "Type of Work" %>
+  <%= f.input :deadline, label: "Timeline" %>
+  <%= f.input :contract_type, label: "Contract type" %>
+  <%= f.input :price, label: "Budget Range", collection: %w(£250 £500 £1000 £2000 £5000) %>
+  <%= f.input :description, placeholder: "Describe your project in more detail", input_html: { rows: 5 }  %>
+<% end %>
+
+

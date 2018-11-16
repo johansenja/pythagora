@@ -1,4 +1,5 @@
 const form = document.getElementById('new_job');
+const editForm = document.querySelector('.edit_job');
 const loginForm = document.querySelector('form.simple_form.user')
 const typeOfWorkField = document.getElementById('job_name');
 const timelineField = document.getElementById('job_deadline');
@@ -70,7 +71,11 @@ const buttonClick = () => {
 const submitForm = () => {
   if (submitButton) {
       submitButton.addEventListener('click', (event) => {
-      form.submit();
+      if (form) {
+        form.submit();
+      } else if (editForm) {
+        editForm.submit();
+      }
     });
   }
 };
