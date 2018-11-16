@@ -9,20 +9,26 @@
   <% @jobs.each do |job| %>
     <div class="container">
       <div class="no-underline">
-      <%= link_to job_path(job) do %>
-        <div class="white-card border-hover">
-          <h3 id="name-value"><%= job.name %></h3>
-          <p><%= job.description %></p>
-          <p>Price: <%= job.price %></p>
-          <p>Deadline: <%= job.deadline %></p>
-          <p>Contract <%= job.contract_type %></p>
-          <% if user_signed_in? && job.buyer != current_user && current_user.developer && !job.developer && !job.bids.any? {|bid| bid.developer == current_user } %>
+        <div class="white-card border-hover flex-area">
+          <div>
+            <%= link_to job_path(job) do %>
+                <h3><%= job.name %></h3>
+            <% end %>
+            <p><%= job.description %></p>
+            <p><%= 'Price:' if job.price %> <%= job.price %></p>
+            <p><%= 'Deadline:' if job.price %> <%= job.deadline %></p>
+            <p><%= 'Contract:' if job.price %> <%= job.contract_type %></p>
+            <% if user_signed_in? && job.buyer != current_user && current_user.developer && !job.developer && !job.bids.any? {|bid| bid.developer == current_user } %>
             <%= link_to "Bid on the project", job_bids_create_path(job, bid: { job_id: job.id, developer_id: current_user.id, buyer_id: job.buyer.id }), method: :post, class:"btn btn-primary", data: { confirm: 'Confirm that you want to bid on this job'} %>
           <% end %>
-      </div>
-      <% end %>
-        </div>
-    </div>
-  <% end %>
-</div>
+          </div>
+          <div class="job-buyer text-center">
+            <% if job.buyer.photo.file %>
+              <%= cl_image_tag job.buyer.photo, class: 'avatar' %>
+            <% else %>
+              <%= image_tag 'avatar.png', height: 200, width: 200 %>
+            <% end %>
+            <p class="light-text"><%= job.buyer.first_name %> <%= job.buyer.last_name %></p>
+          </div>
+
 
