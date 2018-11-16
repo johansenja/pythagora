@@ -16,7 +16,7 @@
           <p>Price: <%= job.price %></p>
           <p>Deadline: <%= job.deadline %></p>
           <p>Contract <%= job.contract_type %></p>
-          <% if user_signed_in? && job.buyer != current_user && current_user.developer == true %>
+          <% if user_signed_in? && job.buyer != current_user && current_user.developer && !job.developer %>
             <%= link_to "Bid on the project", job_bids_new_path(job), class:"btn btn-primary" %>
           <% end %>
       </div>

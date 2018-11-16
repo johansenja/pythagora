@@ -10,7 +10,7 @@
         <%= link_to "Delete", job_path(@job), method: :delete, class:"btn btn-secondary", data: {confirm: 'Are you sure?'} %>
       <% end %>
 
-      <% if user_signed_in? && @job.buyer != current_user && current_user.developer == true %>
+      <% if user_signed_in? && @job.buyer != current_user && current_user.developer && !@job.developer %>
         <%= link_to "Bid on the project", job_bids_new_path(@job), class:"btn btn-primary" %>
       <% end %>
     </div>
