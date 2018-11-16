@@ -9,6 +9,7 @@
         <%= link_to "Edit", edit_job_path(@job), class:"btn btn-secondary" %>
         <%= link_to "Delete", root_path, class:"btn btn-secondary" %>
       <% end %>
+
       <% if user_signed_in? && @job.buyer != current_user && current_user.developer == true %>
         <%= link_to "Bid on the project", job_bids_new_path(@job), class:"btn btn-primary" %>
       <% end %>

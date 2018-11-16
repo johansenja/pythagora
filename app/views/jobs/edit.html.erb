@@ -3,25 +3,19 @@
     <div class="row">
       <div class="col-xs-12 col-sm-6 col-sm-offset-3">
         <div class="white-card">
-          <h2>Tell us about your project</h2>
-          <% if current_user %>
-            <%= render 'shared/jobform', job: @job, url: jobs_path %>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="signed-in-review-my-post">
+          <h2>Tweak your project</h2>
+            <%= render 'shared/jobform', job: @job, url: job_path(@job) %>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#jobEditModal" id="signed-in-review-my-post">
             Review my Post
             </button>
-          <% else %>
-            <%= render 'shared/jobform', job: @job, url: newjob_path(:name) %>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="review-my-post">
-              Review my Post
-            </button>
-          <% end %>
+            <%= link_to 'Back', job_path(@job), class:'btn btn-outline-primary' %>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="jobEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">

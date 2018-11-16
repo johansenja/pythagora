@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-  before_action :find_job, only: %i[show update destroy assign_job]
+  before_action :find_job, only: %i[show update destroy assign_job edit]
   skip_before_action :authenticate_user!, only: [:index, :new, :custom_submit_path]
 
   def index
