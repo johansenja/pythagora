@@ -11,13 +11,13 @@
       <div class="no-underline">
       <%= link_to job_path(job) do %>
         <div class="white-card border-hover">
-          <h3><%= job.name %></h3>
+          <h3 id="name-value"><%= job.name %></h3>
           <p><%= job.description %></p>
           <p>Price: <%= job.price %></p>
           <p>Deadline: <%= job.deadline %></p>
           <p>Contract <%= job.contract_type %></p>
-          <% if user_signed_in? && job.buyer != current_user && current_user.developer == true %>
-            <%= link_to "Bid on the project", job_bids_new_path(job), class:"btn btn-primary" %>
+          <% if user_signed_in? && job.buyer != current_user && current_user.developer && !job.developer && !job.bids.any? {|bid| bid.developer == current_user } %>
+            <%= link_to "Bid on the project", job_bids_create_path(job, bid: { job_id: job.id, developer_id: current_user.id, buyer_id: job.buyer.id }), method: :post, class:"btn btn-primary", data: { confirm: 'Confirm that you want to bid on this job'} %>
           <% end %>
       </div>
       <% end %>
