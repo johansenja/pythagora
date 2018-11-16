@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :find_user, only: [:show, :update]
   skip_before_action :authenticate_user!, only: [:custom_sign_in]
   def index
+    @developers = User.where(developer: true)
   end
 
   def show

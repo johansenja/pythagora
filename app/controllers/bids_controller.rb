@@ -1,6 +1,6 @@
 class BidsController < ApplicationController
   before_action :find_bid, only: [:show, :destroy]
-  before_action :find_job, only: [:new_job, :create]
+  before_action :find_job, only: [:new_job]
   def index
     @bids = Bid.where(buyer_id: current_user.id)
   end
@@ -27,7 +27,7 @@ class BidsController < ApplicationController
   def create
     @bid = Bid.new(bid_params)
     if @bid.save
-      redirect_to job_path(@job)
+      redirect_to job_path(@bid.job)
     else
       render :new_job
     end
