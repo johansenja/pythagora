@@ -11,11 +11,14 @@ Bid.destroy_all
 Job.destroy_all
 User.destroy_all
 
-u = User.new(first_name: 'Matt', last_name: 'Walker', email: 'matt.w@moroccanrugs.com', password: 'password', photo: 'm')
+u = User.new(first_name: 'Matt', last_name: 'Walker', email: 'matt.w@moroccanrugs.com', password: 'password')
+u.remote_photo_url = "https://res.cloudinary.com/datpeem3j/image/upload/v1542383654/m.png"
 puts (u.save ? "buyer saved" : "invalid buyer")
 d = User.new(first_name: 'Phelim', last_name: 'Dunleavy', tagline: 'Senior rails search specialist', email: 'phelim@lewagon.com', password: 'password', developer: true, photo: "vys0rdkzlzqtn7fbhrve")
+d.remote_photo_url = "https://res.cloudinary.com/datpeem3j/image/upload/v1542386861/lcujf8nuqgvnxdlisada.jpg"
 puts (d.save ? "developer saved" : "invalid developer")
 d2 = User.new(first_name: 'Benjamin', last_name: 'Baranger', tagline: 'Senior Rais Developer', email: 'baranger@lewagon.com', password: 'password', developer: true, photo: "b")
+d2.remote_photo_url = "https://res.cloudinary.com/datpeem3j/image/upload/v1542383960/b.jpg"
 puts (d2.save ? "developer saved" : "invalid developer")
 
 j = Job.new(name: 'E-Commerce Platform', description: 'Design an E-Commerce platform for my Moroccan rugs.', completed: true)
