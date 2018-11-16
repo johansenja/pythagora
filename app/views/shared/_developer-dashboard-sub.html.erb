@@ -1,47 +1,33 @@
-<div class="container">
-  <div class="tab-content clearfix">
-    <div class="tab-pane active" id="all_jobs">
-      <% @dev_jobs.each do |job| %>
-        <%= link_to job_path(job) do %>
-          <div class="job-card">
-            <div>
-              <h3><%= job.name %></h3>
-              <p><%= job.description %></p>
-              <p>Contract <%= job.contract_type %></p>
-            </div>
+<div class="tab-content clearfix">
+  <div class="tab-pane active" id="all_jobs">
+    <% @dev_jobs.each do |job| %>
+      <%= link_to job_path(job) do %>
+        <div class="job-card">
+          <div>
+            <h3><%= job.name %></h3>
+            <p><%= job.description %></p>
+            <p>Contract <%= job.contract_type %></p>
           </div>
-        <% end %>
-      <% end %>
-    </div>
-    <div class="tab-pane" id="active_jobs">
-      <% @current_dev_jobs.each do |job| %>
-        <%= link_to job_path(job) do %>
-          <div class="job-card">
-            <div>
-              <h3><%= job.name %></h3>
-              <p><%= job.description %></p>
-              <p>Contract <%= job.contract_type %></p>
-            </div>
         </div>
-        <% end %>
       <% end %>
-    </div>
-    <div class="tab-pane" id="open_jobs">
-      <% @bids.each do |bid| %>
-        <%= link_to job_path(bid.job) do %>
-            <div class="job-card">
-              <div>
-                <h3><%= bid.job.name %></h3>
-                <p><%= bid.job.description %></p>
-                <p>Contract <%= bid.job.contract_type %></p>
-              </div>
-            </div>
-        <% end %>
+    <% end %>
+  </div>
+  <div class="tab-pane" id="active_jobs">
+    <% @current_dev_jobs.each do |job| %>
+      <%= link_to job_path(job) do %>
+        <div class="job-card">
+          <div>
+            <h3><%= job.name %></h3>
+            <p><%= job.description %></p>
+            <p>Contract <%= job.contract_type %></p>
+          </div>
+      </div>
       <% end %>
-    </div>
-    <div class="tab-pane" id="closed_jobs">
-      <% @open_bids.each do |bid| %>
-        <%= link_to job_path(bid.job) do %>
+    <% end %>
+  </div>
+  <div class="tab-pane" id="open_jobs">
+    <% @bids.each do |bid| %>
+      <%= link_to job_path(bid.job) do %>
           <div class="job-card">
             <div>
               <h3><%= bid.job.name %></h3>
@@ -49,21 +35,34 @@
               <p>Contract <%= bid.job.contract_type %></p>
             </div>
           </div>
-        <% end %>
       <% end %>
-    </div>
-    <div class="tab-pane" id="closed_jobs">
-      <% @unsucc_bids.each do |bid| %>
-        <%= link_to job_path(bid.job) do %>
-          <div class="job-card">
-            <div>
-              <h3><%= bid.job.name %></h3>
-              <p><%= bid.job.description %></p>
-              <p>Contract <%= bid.job.contract_type %></p>
-            </div>
+    <% end %>
+  </div>
+  <div class="tab-pane" id="closed_jobs">
+    <% @open_bids.each do |bid| %>
+      <%= link_to job_path(bid.job) do %>
+        <div class="job-card">
+          <div>
+            <h3><%= bid.job.name %></h3>
+            <p><%= bid.job.description %></p>
+            <p>Contract <%= bid.job.contract_type %></p>
           </div>
-        <% end %>
+        </div>
       <% end %>
-    </div>
+    <% end %>
+  </div>
+  <div class="tab-pane" id="closed_jobs">
+    <% @unsucc_bids.each do |bid| %>
+      <%= link_to job_path(bid.job) do %>
+        <div class="job-card">
+          <div>
+            <h3><%= bid.job.name %></h3>
+            <p><%= bid.job.description %></p>
+            <p>Contract <%= bid.job.contract_type %></p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </div>
+

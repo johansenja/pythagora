@@ -1,34 +1,30 @@
-<div class="container">
-  <div class="tab-content clearfix">
-    <div class="tab-pane active" id="developer-dashboard">
-      <div class="container">
-        <h1>Selling Services</h1>
-        <div class="flex-area">
-          <ul class="nav nav-pills nav-fill">
-            <li class="nav-item active">
-              <a class="nav-link active" href="#all_jobs" data-toggle="tab">All Jobs</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#active_jobs" data-toggle="tab">Current Jobs</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#open_jobs" data-toggle="tab">All Bids</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#closed_jobs" data-toggle="tab">Open Bids</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#closed_jobs" data-toggle="tab">Unsuccessful Bids</a>
-            </li>
-          </ul>
-        </div>
-        <%= render 'shared/developer-dashboard-sub' %>
-      </div>
+<div class="tab-content clearfix">
+  <div class="tab-pane active" id="developer-dashboard">
+    <h1 class="light-text">As a Developer</h1>
+    <div class="flex-area">
+      <ul class="nav nav-pills nav-fill sub-tabs">
+        <li class="nav-item active">
+          <a class="nav-link active" href="#all_jobs" data-toggle="tab">All My Jobs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#active_jobs" data-toggle="tab">My Current Jobs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#open_jobs" data-toggle="tab">All My Bids</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#closed_jobs" data-toggle="tab">Pending Bids</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#closed_jobs" data-toggle="tab">Unsuccessful Bids</a>
+        </li>
+      </ul>
     </div>
-    <div class="tab-pane" id="buyer-dashboard">
-      <h1>Buying Services</h1>
-      <%= render 'shared/buyer-dashboard-tabs' %>
-      <%= render 'shared/buyer-dashboard' %>
-    </div>
+    <%= render 'shared/developer-dashboard-sub' %>
+  </div>
+  <div class="tab-pane" id="buyer-dashboard">
+    <h1 class="light-text">As a Buyer</h1>
+    <%= render 'shared/buyer-dashboard-tabs' %>
+    <%= render 'shared/buyer-dashboard' %>
   </div>
 </div>
